@@ -18,7 +18,7 @@ Media Assistant is a Roku channel that allows you to stream/play media from a UR
 
 1. Enable Devloper mode on your Roku by following the **Activating developer mode** section of the [Roku developer documentation](https://developer.roku.com/en-gb/docs/developer-program/getting-started/developer-setup.md).
 
-2. Download the **Media-Assistant.zip** from the [Releases](https://github.com/MedievalApple/Roku-Media-Assistant/releases) page.
+2. Download the **Media-Assistant.zip** from the [Releases](https://github.com/MedievalApple/Media-Assistant/releases) page.
 
 3. Then follow the Sideloading channels section of the [Roku developer documentation](https://developer.roku.com/en-gb/docs/developer-program/getting-started/developer-setup.md) in order to sideload the zip downloaded in step 2.
 
