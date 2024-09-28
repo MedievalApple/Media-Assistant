@@ -20,8 +20,8 @@
 <body>
     <div class="login">
         <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 5%; gap: 2%;">
-        <img style="max-width: 10%;" src="./assets/circle_logo.png">
-        <span style="font-size: xx-large;">Media Assistant Tester</span>
+            <img style="max-width: 10%;" src="./assets/circle_logo.png">
+            <span style="font-size: xx-large;">Media Assistant Tester</span>
         </div>
 
         <div>
@@ -60,31 +60,31 @@
             </div><br>
             <div>
                 <label for="video-name">Video Name: </label>
-                <input type="text" name="videoName" id="video-name" placeholder="Bad Apple"/>
+                <input type="text" name="videoName" id="video-name" placeholder="Bad Apple" />
             </div><br>
             <div>
                 <label for="videoFormat">Video Format: </label>
-                <input type="text" name="videoFormat" id="video-format" placeholder="mp4, mkv, hls"/>
+                <input type="text" name="videoFormat" id="video-format" placeholder="mp4, mkv, hls" />
             </div><br>
             <div>
                 <label for="song-name">Song Name: </label>
-                <input type="text" name="songName" id="song-name" placeholder="Local Elevator"/>
+                <input type="text" name="songName" id="song-name" placeholder="Local Elevator" />
             </div><br>
             <div>
                 <label for="artist-name">Artist Name: </label>
-                <input type="text" name="artistName" id="artist-name" placeholder="John Doe"/>
+                <input type="text" name="artistName" id="artist-name" placeholder="John Doe" />
             </div><br>
             <div>
                 <label for="album-art">Album Art Url: </label>
-                <input type="text" name="albumArt" id="album-art" placeholder="https://art.png"/>
+                <input type="text" name="albumArt" id="album-art" placeholder="https://art.png" />
             </div><br>
             <div>
                 <label for="songFormat">Song Format: </label>
-                <input type="text" name="songFormat" id="song-format" placeholder="mp3, flac, aac"/>
+                <input type="text" name="songFormat" id="song-format" placeholder="mp3, flac, aac" />
             </div><br>
             <div>
                 <label for="launched">Channel Already Launched: </label>
-                <input type="checkbox" name="launched" id="launched"/>
+                <input type="checkbox" name="launched" id="launched" />
             </div><br>
             <label style="font-size: small;" for="videoFormat">* Means parameter is required</label><br><br>
             <div>
@@ -93,7 +93,7 @@
         </form>
 
         <div>
-            <label for="curl">Curl Command: </label>
+            <label for="curl">cURL Command: </label>
             <input type="text" name="curl" id="curl" readonly="" placeholder="curl -d '' 'ipadress'" required /><br><br>
         </div>
 
@@ -110,6 +110,29 @@
             <img style="image-rendering: pixelated;" height="34px" width="34px" src="./assets/circle_logo.png">
         </a>
     </div>
+
+    <div class="login" id="info" style="position: absolute; width: 400px;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 2%;">
+            <span style="font-size: xx-large;">- Information -</span>
+        </div>
+        <br>
+        <div>
+            <p style="font-size: larger;">
+                Do to websites not being able to send web requests to local clients. In order to communicate with 
+                Media Assistant on your Roku <span style="color: #b555ff;"> you must right click and save this page</span>, then open the locally saved copy. <br> <br> You are able to generate cURL commands without locally saving and opening the page.
+            </p>    
+        </div>
+        <br>
+        <div>
+            <button value="Play My Media Roku!" onclick="hideInfo()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        function hideInfo() {
+            document.getElementById("info").hidden = true;
+        }
+    </script>
 
     <script src="./assets/js/requests.js"></script>
     <script src="./assets/js/examples.js"></script>
