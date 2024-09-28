@@ -1,0 +1,24 @@
+title=Media Assistant
+major_version=1
+minor_version=0
+build_version=1
+
+##   Channel Assets
+###  Main Menu Icons / Channel Poster Artwork 
+#### Image sizes are FHD: 540x405px | HD: 290x218px
+mm_icon_focus_fhd=pkg:/images/fhd_poster.png
+mm_icon_focus_hd=pkg:/images/hd_poster.png
+
+###  Splash Screen + Loading Screen Artwork 
+#### Image sizes are FHD: 1920x1080px | HD: 1280x720px
+splash_screen_fhd=pkg:/images/fhd_splash.png
+splash_screen_hd=pkg:/images/hd_splash.png
+
+splash_color=#232323
+splash_min_time=1000
+
+ui_resolutions = "hd,fhd"
+
+confirm_partner_button=1
+
+supports_input_launch=1

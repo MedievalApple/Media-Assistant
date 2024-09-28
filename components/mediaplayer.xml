@@ -1,0 +1,146 @@
+<?xml version = "1.0" encoding = "utf-8" ?> 
+
+<component name = "MediaPlayer" extends = "Scene" >
+
+    <interface>
+        <field id="contentId" type="string"/>
+        <field id="mediaType" type="string"/>
+    </interface>
+
+        <script type="text/brightscript" uri="pkg:/components/mediaplayer.brs" />
+
+        <children>
+
+            <Poster
+                id="SourceLogo"
+                uri="pkg:/images/logo.png"
+                width="426"
+                height="60"
+                translation="[425, 25]" />
+
+            <Group
+            id = "AudioUI"
+            visible = "false" >
+
+                <Rectangle 
+                id = "AlbumRectangle" 
+                translation = "[ 150, 100 ]" 
+                width = "500" 
+                height = "500" 
+                color = "0x101010FF" >
+
+                    <Poster
+                    id="AlbumArt"
+                    uri="pkg:/images/record_full.png"
+                    width="480"
+                    height="480"
+                    translation="[10, 10]" />
+
+                    <Rectangle 
+                    id = "AlbumFade"
+                    translation = "[ 10, 10 ]" 
+                    width = "480" 
+                    height = "480" 
+                    opacity = "0.75"
+                    color = "0x101010FF"
+                    visible = "false" >
+                    
+                        <Poster
+                        id="state"
+                        uri="pkg:/images/pause.png"
+                        width="120"
+                        height="120"
+                        translation="[180, 180]" />
+
+                    </Rectangle>
+
+                </Rectangle>
+
+                <ScrollingLabel 
+                    id = "SongName" 
+                    translation = "[ 700, 125 ]" 
+                    width = "480" 
+                    height = "36" 
+                    font = "font:LargeBoldSystemFont" 
+                    horizalign = "left" 
+                    vertalign = "center" 
+                    wrap = "true"
+                    text = "Reach For The Summit" />
+
+                <ScrollingLabel 
+                    id = "ArtistName" 
+                    translation = "[ 700, 175 ]" 
+                    width = "480" 
+                    height = "36" 
+                    font = "font:LargeBoldSystemFont" 
+                    horizalign = "left" 
+                    vertalign = "center" 
+                    wrap = "true"
+                    text= "Lena Raine" />
+
+                <Label 
+                    id = "CurTime" 
+                    translation = "[ 672, 520 ]" 
+                    width = "480" 
+                    height = "36" 
+                    font = "font:SmallSystemFont" 
+                    horizalign = "left" 
+                    vertalign = "center" 
+                    wrap = "true"
+                    text= " 0:00" />
+
+                <Label 
+                    id = "TotalTime" 
+                    translation = "[ 1085, 520 ]" 
+                    width = "480" 
+                    height = "36" 
+                    font = "font:SmallSystemFont" 
+                    horizalign = "left" 
+                    vertalign = "center" 
+                    wrap = "true"
+                    text= " 0:00" />
+
+                <Rectangle 
+                id = "ProgressBarBg" 
+                translation = "[670, 550]" 
+                width = "475" 
+                height = "15" 
+                color = "0x101010FF" >
+
+                <Rectangle 
+                id = "ProgressBar" 
+                translation = "[0,0]" 
+                width = "0" 
+                height = "15" 
+                color = "0x662d91" />
+
+                </Rectangle>
+            </Group>
+
+            <Rectangle 
+                id = "infoRectangle" 
+                translation = "[ 175, 625 ]" 
+                width = "900" 
+                height = "76" 
+                color = "0x101010FF"
+                visible = "false"  >
+
+            <ScrollingLabel 
+                id = "infoLabel" 
+                translation = "[ 20, 20 ]" 
+                maxWidth = "865" 
+                height = "36" 
+                font = "font:LargeBoldSystemFont" 
+                horizalign = "center" 
+                vertAlign = "center"
+                text = "Launch media using a Deeplink learn more at medievalapple.net/Media-Assistant" />
+
+            </Rectangle>
+
+            <Video 
+            id = "videoPlayer" 
+            visible = "false" />
+
+        </children>
+
+</component>

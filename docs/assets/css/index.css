@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Figtree", sans-serif;
+    color: white;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(43, 43, 43);
+    image-rendering: pixelated;
+    background-size: 10vw;
+}
+
+.dropdown {
+    text-align: left;
+}
+
+#dropdown-image {
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 10px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    text-align: left;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 10px;
+    background-color: rgb(43, 43, 43);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.login {
+    width: 590px;
+    border: 2px solid rgba(255, 255, 255, .2);
+    background-color: rgb(43, 43, 43);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    /* text-shadow: rgb(0, 0, 0) 1px 0 3px; */
+    text-align: center;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+button {
+    background-color: #1a1a1a;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    /* text-shadow: rgb(0, 0, 0) 1px 0 3px; */
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: #2c2c2c;
+}
+
+input[type=text] {
+    background-color: #1a1a1a;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    /* text-shadow: rgb(0, 0, 0) 1px 0 3px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+#nameInput {
+    color: white;
+}
+
+.github {
+    fill: white;
+    text-decoration: none;
+}
+
+select {
+    text-align: center;
+    background-color: #1a1a1a;
+    border: 2px solid rgba(255, 255, 255, .2);
+}
+
+option {
+    background-color: #1a1a1a;
+    border: 2px solid rgba(255, 255, 255, .2);
+}
