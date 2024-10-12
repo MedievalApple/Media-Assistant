@@ -180,7 +180,7 @@ sendDeeplink({'u': 'https://archive.org/download/BigBuckBunny_124/Content/big_bu
 
 <br>
 
-The Python examples make use of the built-in requests library and follows the same URL Parameters as listed in the API section above.
+The Python examples make use of the requests library and follows the same URL Parameters as listed in the API section above.
 
 - Launch Media Assistant on Roku with `/launch/[Channel Id]`
 ```python
