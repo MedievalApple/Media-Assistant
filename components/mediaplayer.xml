@@ -133,7 +133,7 @@
                 font = "font:LargeBoldSystemFont" 
                 horizalign = "center" 
                 vertAlign = "center"
-                text = "Launch media using a Deeplink learn more at medievalapple.net/Media-Assistant" />
+                text = "Launch media using a Deeplink. Learn more at medievalapple.net/Media-Assistant" />
 
             </Rectangle>
 
