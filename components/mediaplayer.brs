@@ -42,6 +42,7 @@ Function handleDeepLink(deeplink as object)
         print "deeplink failed validation"
         m.debuglabel.visible = true
         m.noDeeplink = true
+        m.debuglabel.setFocus(true)
     elseif deeplink.t = "v" and deeplink.u <> Invalid
         m.debuglabel.visible = false
         playvideo(deeplink.videoName, deeplink.u, deeplink.videoFormat)

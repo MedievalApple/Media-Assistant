@@ -21,7 +21,7 @@ function ListenInput()
           ' pass the deeplink to UI
           deeplink = Invalid
 
-          if inputData.u <> Invalid and inputData.t <> Invalid
+          if inputData.u <> Invalid
               deeplink = {
                   u: check(Invalid, inputData.u)
                   t: check("v", inputData.t)

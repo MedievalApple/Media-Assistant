@@ -29,7 +29,7 @@ end sub
 Function getDeepLinks(args) as Object
     deeplink = Invalid
 
-    if args.u <> Invalid and args.t <> Invalid
+    if args.u <> Invalid
         deeplink = {
             u: check(Invalid, args.u)
             t: check("v", args.t)
