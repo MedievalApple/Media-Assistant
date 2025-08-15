@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="about" extends="StandardDialog" initialFocus="buttonArea" >
+
+    <children>
+        <StdDlgTitleArea primaryTitle="About" />
+        <StdDlgContentArea>
+            <StdDlgTextItem text="Media Assistant: Copyright 2025 Joseph Friend" />
+
+            <StdDlgTextItem namedTextStyle="bold" text="Links:" />
+            <StdDlgTextItem text="Website:" />
+            <StdDlgTextItem text="https://medievalapple.net/Media-Assistant" />
+            <StdDlgTextItem text="Github:" />
+            <StdDlgTextItem text="https://github.com/MedievalApple/Media-Assistant" />
+
+            <StdDlgTextItem namedTextStyle="bold" text=" " />
+
+            <StdDlgTextItem namedTextStyle="bold" text="Copyright:" />
+
+            <StdDlgTextItem text="Media Assistant:" />
+            <StdDlgTextItem namedTextStyle="secondary" text="Copyright 2025 Joseph Friend" />
+            <StdDlgTextItem namedTextStyle="secondary" text="Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at" />
+            <StdDlgTextItem namedTextStyle="secondary" text="http://www.apache.org/licenses/LICENSE-2.0" />
+            <StdDlgTextItem namedTextStyle="secondary" text="Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License." />
+
+            <StdDlgTextItem text="M PLUS Rounded 1c:" />
+            <StdDlgTextItem namedTextStyle="secondary" text="Designed by Coji Morishita, M+ Fonts Project" />
+            <StdDlgTextItem namedTextStyle="secondary" text="This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://openfontlicense.org" />
+        </StdDlgContentArea>
+        <StdDlgButtonArea id="buttonArea">
+            <StdDlgButton text="Close" />
+        </StdDlgButtonArea>
+    </children>
+
+    <script type="text/brightscript" uri="pkg:/components/about.brs" />
+
+</component>

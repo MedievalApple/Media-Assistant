@@ -1,11 +1,38 @@
 const form = document.querySelector("#form");
 
 form.addEventListener("change", (event) => {
+    RefreshCURL()
+})
+
+function RefreshCURL() {
     const formData = new FormData(form);
     let editedData = new FormData(form);
+
     editedData.delete("ip")
     editedData.delete("id")
     editedData.delete("launched")
+
+    if (editedData.get("enqueue") == "on") {
+        editedData.set("enqueue", "true")
+    }
+    else {
+        editedData.delete("enqueue")
+    }
+
+    if (editedData.get("isLive") == "on") {
+        editedData.set("isLive", "true")
+    }
+    else {
+        editedData.delete("isLive")
+    }
+
+    for (let data of formData.entries()) {
+        console.log(data[0], data[1])
+        if (data[1] == "" & data[0] != "u") {
+            editedData.delete(data[0])
+        }
+    }
+
     const searchParams = new URLSearchParams(editedData).toString()
     try {
         if (document.getElementById("launched").checked) {
@@ -17,7 +44,7 @@ form.addEventListener("change", (event) => {
     } catch (e) {
         console.error(e);
     }
-})
+}
 
 //Launch Request
 async function postData(url = "", data = {}) {
@@ -39,6 +66,28 @@ async function sendData() {
     editedData.delete("ip")
     editedData.delete("id")
     editedData.delete("launched")
+
+    if (editedData.get("enqueue") == "on") {
+        editedData.set("enqueue", "true")
+    }
+    else {
+        editedData.delete("enqueue")
+    }
+
+    if (editedData.get("isLive") == "on") {
+        editedData.set("isLive", "true")
+    }
+    else {
+        editedData.delete("isLive")
+    }
+
+    for (let data of formData.entries()) {
+        // console.log(data[0], data[1])
+        if (data[1] == "" & data[0] != "u") {
+            editedData.delete(data[0])
+        }
+    }
+
     const searchParams = new URLSearchParams(editedData).toString()
     try {
         console.log(searchParams)

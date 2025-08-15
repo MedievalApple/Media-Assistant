@@ -4,11 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="./assets/css/index.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
-        rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/favicon.png">
     <meta charset="utf-8" />
     <meta name="description" content="A Tester for Media Assistant">
     <meta name="keywords" content="JavaScript, Roku, SmartHome">
@@ -21,34 +17,34 @@
     <div class="login">
         <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 5%; gap: 2%;">
             <img style="max-width: 10%;" src="./assets/circle_logo.png">
-            <span style="font-size: xx-large;">Media Assistant Tester</span>
+            <span style="font-size: xx-large; font-weight: bold;">Media Assistant Tester</span>
         </div>
 
         <div>
-            <label for="ex">Example</label>
+            <label for="ex">Examples</label>
 
-            <select class="ex" name="ex" required>
+            <select style="margin-bottom: 5%;" class="ex" name="ex" required>
                 <option value="">Custom</option>
                 <option value="v">Video</option>
                 <option value="a">Audio</option>
                 <option value="la">Live Audio</option>
                 <option value="lv">Live Video</option>
             </select>
-        </div><br>
+        </div>
 
         <form id="form">
             <div>
                 <label for="ip">*Roku IP Address </label>
                 <input type="text" name="ip" id="ip" placeholder="10.0.0.15" required />
-            </div><br>
+            </div>
             <div>
                 <label for="id">*Roku Channel ID </label>
                 <input type="text" name="id" id="id" placeholder="dev" value="782875" required />
-            </div><br>
+            </div>
             <div>
-                <label for="u">*Media Url: </label>
-                <input type="text" name="u" id="u" placeholder="https://video.mp4" required />
-            </div><br>
+                <label for="u">**Media Url: </label>
+                <input class="clear" type="text" name="u" id="u" placeholder="https://video.mp4" />
+            </div>
             <div>
                 <label for="media-type">*Media Type:</label>
 
@@ -56,37 +52,61 @@
                     <option value="">Please choose Media Type</option>
                     <option value="v">Video</option>
                     <option value="a">Audio</option>
+                    <option value="m">Metadata (Audio Only)</option>
                 </select>
-            </div><br>
-            <div>
+            </div>
+            <div class="video" style="display: none;">
                 <label for="video-name">Video Name: </label>
-                <input type="text" name="videoName" id="video-name" placeholder="Bad Apple" />
-            </div><br>
-            <div>
+                <input class="clear" type="text" name="videoName" id="video-name" placeholder="Bad Apple" />
+            </div>
+            <div class="video" style="display: none;">
                 <label for="videoFormat">Video Format: </label>
-                <input type="text" name="videoFormat" id="video-format" placeholder="mp4, mkv, hls" />
-            </div><br>
-            <div>
+                <input class="clear" type="text" name="videoFormat" id="video-format" placeholder="mp4, mkv, hls" />
+            </div>
+            <div class="audio metadata" style="display: none;">
+                <label for="album-name">Album Name: </label>
+                <input class="clear" type="text" name="albumName" id="album-name" placeholder="Epic Elevator Tunes!" />
+            </div>
+            <div class="audio metadata" style="display: none;">
                 <label for="song-name">Song Name: </label>
-                <input type="text" name="songName" id="song-name" placeholder="Local Elevator" />
-            </div><br>
-            <div>
+                <input class="clear" type="text" name="songName" id="song-name" placeholder="Local Elevator" />
+            </div>
+            <div class="audio metadata" style="display: none;">
                 <label for="artist-name">Artist Name: </label>
-                <input type="text" name="artistName" id="artist-name" placeholder="John Doe" />
-            </div><br>
-            <div>
+                <input class="clear" type="text" name="artistName" id="artist-name" placeholder="John Doe" />
+            </div>
+            <div class="audio metadata" style="display: none;">
                 <label for="album-art">Album Art Url: </label>
-                <input type="text" name="albumArt" id="album-art" placeholder="https://art.png" />
-            </div><br>
-            <div>
+                <input class="clear" type="text" name="albumArt" id="album-art" placeholder="https://art.png" />
+            </div>
+            <div class="audio metadata" style="display: none;">
                 <label for="songFormat">Song Format: </label>
-                <input type="text" name="songFormat" id="song-format" placeholder="mp3, flac, aac" />
+                <input class="clear" type="text" name="songFormat" id="song-format" placeholder="mp3, flac, aac" />
+            </div>
+            <div class="audio metadata" style="display: none;">
+                <label for="timeOffset">Time Offset: </label>
+                <input class="clear" type="text" name="timeOffset" id="timeOffset" placeholder="0" />
+            </div>
+            <div class="audio metadata" style="display: none;">
+                <label for="duration">Duration: </label>
+                <input class="clear" type="text" name="duration" id="duration" placeholder="190" />
+            </div>
+            <div>
+                <span class="audio video" style="display: none;">
+                    <label for="enqueue">Enqueue: </label>
+                    <input class="clearBox" type="checkbox" name="enqueue" id="enqueue" style="margin-right: 2%;" />
+                </span>
+                <span class="audio metadata" style="display: none;">
+                    <label for="isLive" style="margin-left: 2%;">Is Live: </label>
+                    <input class="clearBox" type="checkbox" name="isLive" id="is-live" />
+                </span>
             </div><br>
             <div>
                 <label for="launched">Channel Already Launched: </label>
                 <input type="checkbox" name="launched" id="launched" />
             </div><br>
-            <label style="font-size: small;" for="videoFormat">* Means parameter is required</label><br><br>
+            <label style="font-size: small;" for="videoFormat">* Means parameter is required</label><br>
+            <label style="font-size: small;" for="videoFormat">** Required unless using Media Type: Metadata</label><br><br>
             <div>
                 <button type="submit" value="Play My Media Roku!">Play on Media Assistant</button><br><br>
             </div>
@@ -105,7 +125,7 @@
             </svg>
         </a>
         <a style="margin-left: 5%; margin-right: 5;"></a>
-        <a title="Media Assistant Home Page" href="https://medievalapple.net/Media-Assistant.html"
+        <a title="Media Assistant Home Page" href="https://medievalapple.net/media-assistant/setup.html"
             style="text-decoration: none;">
             <img style="image-rendering: pixelated;" height="34px" width="34px" src="./assets/circle_logo.png">
         </a>
@@ -113,7 +133,7 @@
 
     <div class="login" id="info" style="position: absolute; width: 400px;">
         <div style="display: flex; align-items: center; justify-content: center; gap: 2%;">
-            <span style="font-size: xx-large;">- Information -</span>
+            <span style="font-size: xx-large; font-weight: bold;">- Information -</span>
         </div>
         <br>
         <div>
@@ -136,6 +156,7 @@
 
     <script src="./assets/js/requests.js"></script>
     <script src="./assets/js/examples.js"></script>
+    <script src="./assets/js/fieldDisplay.js"></script>
 </body>
 
 </html>

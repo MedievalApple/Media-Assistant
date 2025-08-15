@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Figtree", sans-serif;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 500;
+    font-style: normal;
     color: white;
 }
 
@@ -64,6 +68,7 @@ button {
     display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s;
+    font-weight: bold;
 }
 
 button:hover {
@@ -79,6 +84,7 @@ input[type=text] {
     text-decoration: none;
     display: inline-block;
     transition-duration: 0.4s;
+    margin-bottom: 4%;
 }
 
 #nameInput {
@@ -94,6 +100,7 @@ select {
     text-align: center;
     background-color: #1a1a1a;
     border: 2px solid rgba(255, 255, 255, .2);
+    margin-bottom: 4%;
 }
 
 option {

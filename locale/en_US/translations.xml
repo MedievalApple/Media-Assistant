@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+<file source-language="en-US" target-language="en-US" >
+<body>
+  <trans-unit id="0">
+    <source>Launch media using a Deeplink request, or with a supported app.</source>
+    <target>Launch media using a Deeplink request, or with a supported app.</target>
+  </trans-unit>
+  <trans-unit id="1">
+    <source>Unknown Album</source>
+    <target>Unknown Album</target>
+  </trans-unit>
+  <trans-unit id="2">
+    <source>Unknown Song</source>
+    <target>Unknown Song</target>
+  </trans-unit>
+  <trans-unit id="3">
+    <source>Unknown Artist</source>
+    <target>Unknown Artist</target>
+  </trans-unit>
+  <trans-unit id="4">
+    <source>Unknown Video</source>
+    <target>Unknown Video</target>
+  </trans-unit>
+  <trans-unit id="5">
+    <source>Live</source>
+    <target>Live</target>
+  </trans-unit>
+  <trans-unit id="6">
+    <source>Settings</source>
+    <target>Settings</target>
+  </trans-unit>
+  <trans-unit id="7">
+    <source>These settings only affect the music player</source>
+    <target>These settings only affect the music player</target>
+  </trans-unit>
+  <trans-unit id="8">
+    <source>Album Art Background</source>
+    <target>Album Art Background</target>
+  </trans-unit>
+  <trans-unit id="9">
+    <source>Show Album Name If Available</source>
+    <target>Show Album Name If Available</target>
+  </trans-unit>
+  <trans-unit id="10">
+    <source>Enable Screen Saver During Playback</source>
+    <target>Enable Screen Saver During Playback</target>
+  </trans-unit>
+  <trans-unit id="11">
+    <source>Note: Settings will take effect next song</source>
+    <target>Note: Settings will take effect next song</target>
+  </trans-unit>
+  <trans-unit id="12">
+    <source>Close</source>
+    <target>Close</target>
+  </trans-unit>
+  <trans-unit id="13">
+    <source>Deeplink Error: An internal error has occurred while processing that Deeplink!</source>
+    <target>Deeplink Error: An internal error has occurred while processing that Deeplink!</target>
+  </trans-unit>
+  <trans-unit id="14">
+    <source>Media Type Error: Metadata can only be used if media is already playing</source>
+    <target>Media Type Error: Metadata can only be used if media is already playing</target>
+  </trans-unit>
+  <trans-unit id="15">
+    <source>Media Queue Error: There was an issue processing the queued media</source>
+    <target>Media Queue Error: There was an issue processing the queued media</target>
+  </trans-unit>
+  <trans-unit id="16">
+    <source>Media URL Error: There was no media URL provided</source>
+    <target>Media URL Error: There was no media URL provided</target>
+  </trans-unit>
+  <trans-unit id="17">
+    <source>Media Type Error: The Media Type provided is unknown</source>
+    <target>Media Type Error: The Media Type provided is unknown</target>
+  </trans-unit>
+  <trans-unit id="18">
+    <source>Deeplink Error: The request didn't contain valid data</source>
+    <target>Deeplink Error: The request didn't contain valid data</target>
+  </trans-unit>
+  <trans-unit id="19">
+    <source>Scan to learn more</source>
+    <target>Scan to learn more</target>
+  </trans-unit>
+  <trans-unit id="20">
+    <source>Or go to medievalapple.net/ma-setup</source>
+    <target>Or go to medievalapple.net/ma-setup</target>
+  </trans-unit>
+  <trans-unit id="21">
+    <source>Welcome to Media Assistant!</source>
+    <target>Welcome to Media Assistant!</target>
+  </trans-unit>
+  <trans-unit id="22">
+    <source>To learn how to setup supported apps or how to use the developer API, please scan the code.</source>
+    <target>To learn how to setup supported apps or how to use the developer API, please scan the code.</target>
+  </trans-unit>
+  <trans-unit id="23">
+    <source>| About</source>
+    <target>| About</target>
+  </trans-unit>
+  <trans-unit id="24">
+    <source>About</source>
+    <target>About</target>
+  </trans-unit>
+  <trans-unit id="25">
+    <source>Links:</source>
+    <target>Links:</target>
+  </trans-unit>
+  <trans-unit id="26">
+    <source>Website:</source>
+    <target>Website:</target>
+  </trans-unit>
+  <trans-unit id="27">
+    <source>Copyright:</source>
+    <target>Copyright:</target>
+  </trans-unit>
+</body>
+</file>
+</xliff>

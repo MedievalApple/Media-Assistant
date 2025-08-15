@@ -11,19 +11,24 @@ sub init()
     m.albumstate = m.top.findNode("state")
     m.audioui = m.top.findNode("AudioUI")
 
+    m.bg = m.top.findNode("Bg")
+
+    m.albumname = m.top.findNode("AlbumName")
     m.songname = m.top.findNode("SongName")
     m.artistname = m.top.findNode("ArtistName")
     m.albumart = m.top.findNode("AlbumArt")
+
+    m.landingpage = m.top.findNode("LandingPage")
 
     m.InputTask=createObject("roSgNode","inputTask")
     m.InputTask.observefield("inputData","handleInputEvent")
     m.InputTask.control="RUN"
 
+    m.settingsDialog=createObject("roSgNode","settings")
+    m.aboutDialog=createObject("roSgNode","about")
+
     m.video.observeField("state", "controlvideoplay")
     m.video.observeField("position", "trackvideoprogress")
-
-    ' m.videoprogress.color = "0x11bdf2"
-    ' m.video.trickPlayBar.filledBarBlendColor = "0x11bdf2"
 
     m.top.SignalBeacon("AppLaunchComplete")
 
@@ -31,32 +36,55 @@ sub init()
 end sub
 
 Function handleDeepLink(deeplink as object)
-
     m.overrideControls = false
-    m.noDeeplink = false
+
+    m.parsedDeeplink = Invalid
+    m.queuedDeeplink = Invalid
+
+    m.queueError = false
 
     m.seek = 0
-    m.live = false
+    m.noSeeking = false
 
     if deeplink = Invalid
-        print "deeplink failed validation"
+        m.debugtext.text = tr("Deeplink Error: An internal error has occurred while processing that Deeplink!")
         m.debuglabel.visible = true
-        m.noDeeplink = true
         m.debuglabel.setFocus(true)
-    elseif deeplink.t = "v" and deeplink.u <> Invalid
+    elseif deeplink.t = "v" and deeplink.u <> Invalid and deeplink.u <> ""
         m.debuglabel.visible = false
-        playvideo(deeplink.videoName, deeplink.u, deeplink.videoFormat)
-        m.debugtext.text = deeplink.u
-    elseif deeplink.t = "a" and deeplink.u <> Invalid
+        m.landingpage.visible = false
+        m.parsedDeeplink = deeplink
+        playvideo()
+        m.debugtext.text = m.parsedDeeplink.u
+    elseif deeplink.t = "a" and deeplink.u <> Invalid and deeplink.u <> ""
         m.debuglabel.visible = false
+        m.landingpage.visible = false
         m.audioui.visible = true
-        playaudio(deeplink.u, deeplink.songFormat, deeplink.songName, deeplink.artistName, deeplink.albumArt)
-        m.debugtext.text = deeplink.u
+        m.parsedDeeplink = deeplink
+        playaudio()
+        m.debugtext.text = m.parsedDeeplink.u
     else
-        print "deeplink does not contain media type"
-        m.debugtext.text = "Unable to process that Deeplink"
-        m.debuglabel.visible = true
-        m.noDeeplink = true
+        if deeplink.t = "m"
+            m.debugtext.text = tr("Media Type Error: Metadata can only be used if media is already playing")
+            m.debuglabel.visible = true
+        elseif deeplink.enqueue = true
+            m.debugtext.text = tr("Media Queue Error: There was an issue processing the queued media")
+            m.debuglabel.visible = true
+            m.queueError = true
+        elseif deeplink.u = ""
+            m.debugtext.text = tr("Media URL Error: There was no media URL provided")
+            m.debuglabel.visible = true
+        elseif deeplink.u = Invalid
+            ' This is what shows the Landing Page
+            m.debuglabel.visible = true
+        elseif deeplink.t <> Invalid and deeplink.u <> Invalid
+            m.debugtext.text = tr("Media Type Error: The Media Type provided is unknown")
+            m.debuglabel.visible = true
+        else
+            m.debugtext.text = tr("Deeplink Error: The request didn't contain valid data")
+            m.debuglabel.visible = true
+        end if
+        m.debuglabel.setFocus(true)
     end if
 end Function
 
@@ -65,43 +93,105 @@ sub handleInputEvent(msg)
     if type(msg) = "roSGNodeEvent" and msg.getField() = "inputData"
         deeplink = msg.getData()
         if deeplink <> invalid
-            handleDeepLink(deeplink)
+            if (deeplink.enqueue = true)
+                m.queuedDeeplink = deeplink
+            elseif (deeplink.t = "m" and m.audioui.visible = true)
+                if (deeplink.u = Invalid or deeplink.u = "")
+                    updateMetadata(deeplink)
+                else
+                    if (deeplink.u <> Invalid and deeplink.u <> "")
+                        deeplink.t = "a"
+                        handleDeepLink(deeplink)
+                    end if
+                end if
+            elseif (deeplink.u <> Invalid and deeplink.u <> "")
+                handleDeepLink(deeplink)
+            end if
         end if
     end if
 end sub
 
-sub playaudio(url, format, name, artist, art)
+sub updateMetadata(deeplink)
+    ' Update Audio Metadata
+    SetAlbumName(deeplink.albumName)
+    m.songname.text = deeplink.songName
+    m.artistname.text = deeplink.artistName
+    if (deeplink.albumArt <> "")
+        m.albumart.uri = deeplink.albumArt
+        SetBg(deeplink.albumArt)
+    else
+        m.albumart.uri = "pkg:/images/record_full.png"
+        SetBg("")
+    end if
+    m.parsedDeeplink.timeOffset = deeplink.timeOffset
+    m.parsedDeeplink.duration = deeplink.duration
+    m.parsedDeeplink.isLive = deeplink.isLive
+end sub
+
+sub playaudio()
     audiocontent = createObject("RoSGNode", "ContentNode")
     
-    audiocontent.url = url
-    audiocontent.streamformat = format
+    audiocontent.url = m.parsedDeeplink.u
+    audiocontent.streamformat = m.parsedDeeplink.songFormat
 
     m.video.content = audiocontent
 
-    m.songname.text = name
-    m.artistname.text = artist
-    if (art <> "")
-        m.albumart.uri = art
+    SetAlbumName(m.parsedDeeplink.albumName)
+    m.songname.text = m.parsedDeeplink.songName
+    m.artistname.text = m.parsedDeeplink.artistName
+    if (m.parsedDeeplink.albumArt <> "")
+        m.albumart.uri = m.parsedDeeplink.albumArt
+        SetBg(m.parsedDeeplink.albumArt)
+    else
+        m.albumart.uri = "pkg:/images/record_full.png"
+        SetBg("")
     end if
     m.video.enableTrickPlay = false
     m.overrideControls = true
 
     m.video.control = "play"
+    if (GetSettings("screenSaver", "false") = True)
+        m.video.disableScreenSaver = false
+    else
+        m.video.disableScreenSaver = true
+    end if
     m.video.visible = false
     m.video.setFocus(true)
 end sub
 
-sub playvideo(title, url, format)
+sub SetBg(uri As String)
+    if (GetSettings("artBg", true) = True and uri <> "")
+        m.bg.visible = true
+        m.bg.uri = uri
+    else
+        m.bg.visible = false
+    end if
+end sub
+
+sub SetAlbumName(albumName As String)
+    if (GetSettings("albumName", true) = True and albumName <> "")
+        m.songName.translation = "[ 700, 175 ]" 
+        m.artistName.translation = "[ 700, 225 ]" 
+        m.albumName.text = albumName
+        m.albumName.visible = true
+    else
+        m.albumName.visible = false
+        m.songName.translation = "[ 700, 125 ]" 
+        m.artistName.translation = "[ 700, 175 ]" 
+    end if
+end sub
+
+sub playvideo()
     videocontent = createObject("RoSGNode", "ContentNode")
 
-    videocontent.title = title
-    videocontent.url = url
-    videocontent.streamformat = format
+    videocontent.title = m.parsedDeeplink.videoName
+    videocontent.url = m.parsedDeeplink.u
+    videocontent.streamformat = m.parsedDeeplink.videoFormat
 
     m.video.content = videocontent
 
     m.video.enableTrickPlay = true
-    m.video.trickPlayBar.filledBarBlendColor = "0x662d91"
+    m.video.trickPlayBar.filledBarBlendColor = "#662d91"
 
     m.video.control = "play"
     m.video.visible = true
@@ -110,22 +200,49 @@ end sub
 
 sub trackvideoprogress()
     TRY
-        if (m.video.state = "playing" and m.video.duration <> Invalid) 
-            m.videoprogress.color = "0x662d91"
-            m.videototal.text = ConvertSec(m.video.duration)
-            m.videotime.text = ConvertSec(m.video.position)
-            m.videoprogress.width = MapRange(m.video.position, 0, m.video.duration, 0, 475)
-            m.live = false
+        if (m.video.state = "playing")
+            if (m.parsedDeeplink.isLive = true and m.parsedDeeplink.isLive <> Invalid)
+                SetLive()
+            ' If The file has a valid duration
+            elseif (m.video.duration <> Invalid)
+
+                m.videoprogress.color = "#662d91"
+
+                curTime = m.video.position
+                duration = m.video.duration
+
+                if (m.parsedDeeplink.timeOffset <> Invalid)
+                    ' Setting to live to disable seeking while using custom duration
+                    m.noSeeking = true
+                    curTime = m.video.position + m.parsedDeeplink.timeOffset
+                else
+                    m.noSeeking = false
+                end if
+
+                if (m.parsedDeeplink.duration <> Invalid)
+                    ' Setting to live to disable seeking while using custom duration
+                    m.noSeeking = true
+                    duration = m.parsedDeeplink.duration
+                else
+                    m.noSeeking = false
+                end if
+
+                m.videototal.text = ConvertSec(duration)
+                barWidth = MapRange(curTime, 0, duration, 0, 475)
+                if (barWidth > 475)
+                    m.videoprogress.width = 475
+                else
+                    m.videoprogress.width = barWidth
+                endif
+
+                m.videotime.text = ConvertSec(curTime)
+            else
+                SetLive()
+            end if
         end if
     CATCH e
-        m.live = true
-        m.videototal.text = ""
-        m.videotime.text = "Live"
-        m.videoprogress.width = 475
-        m.videoprogress.color = "0xcc0000"
-        if (m.albumart.uri = "pkg:/images/record_full.png")
-            m.albumart.uri = "pkg:/images/radio_full.png"
-        end if
+        print("Somthing failed during video progress track falling to live")
+        SetLive()
     END TRY
 end sub
 
@@ -142,6 +259,17 @@ sub ConvertSec(seconds as Integer) as String
     return Str(minutes) + ":" + right(remainingSeconds, 2)
 end sub
 
+sub SetLive()
+    m.noSeeking = true
+    m.videototal.text = ""
+    m.videotime.text = tr("Live")
+    m.videoprogress.width = 475
+    m.videoprogress.color = "#cc0000"
+    if (m.albumart.uri = "pkg:/images/record_full.png")
+        m.albumart.uri = "pkg:/images/radio_full.png"
+    end if
+end sub
+
 function MapRange(value, in_min, in_max, out_min, out_max)
     value1 = value - in_min
     value2 = out_max - out_min
@@ -153,39 +281,61 @@ function MapRange(value, in_min, in_max, out_min, out_max)
     ' return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 end function
 
+Function GetSettings(key As String, default) As Dynamic
+     sec = CreateObject("roRegistrySection", "Settings")
+     if sec.Exists(key)
+        value = sec.Read(key)
+        if (value = "true")
+            return true
+        elseif (value = "false")
+            return false
+        else
+            return value
+        end if
+     end if
+     return default
+End Function
+
 sub controlvideoplay()
     if (m.video.state = "playing")
         m.albumfade.visible = false
     end if
     if (m.video.state = "finished") 
-        ' m.video.control = "stop"
+        print("FINISHED PLAYBACK PRINTING QUEUE")
+        print(m.queuedDeeplink)
+        if (m.queuedDeeplink <> Invalid)
+            m.video.control = "stop"
+            handleDeepLink(m.queuedDeeplink)
+        end if
         ' m.video.visible = false
     end if
 end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
     if press then
-        if (m.noDeeplink = true)
-            if key = "back"
-                End
-            endif
-        elseif (m.overrideControls = true)
+        if (m.overrideControls = true)
             if key = "play"
                 if (m.video.state = "playing")
                     m.video.control = "pause"
                     m.albumstate.uri = "pkg:/images/pause.png"
                     m.albumfade.visible = true
                     m.seek = m.video.position
+                    m.video.disableScreenSaver = false
                 elseif (m.video.state = "paused")
                     m.video.control = "resume"
                     m.seek = m.video.position
+                    if (GetSettings("screenSaver", "false") = True)
+                        m.video.disableScreenSaver = false
+                    else
+                        m.video.disableScreenSaver = true
+                    end if
                 endif
             endif
-            if key = "replay" and m.live = false
+            if key = "replay" and m.noSeeking = false
                 m.video.control = "play"
                 m.seek = m.video.position
             endif
-            if key = "fastforward" and m.live = false
+            if key = "fastforward" and m.noSeeking = false
                 m.albumstate.uri = "pkg:/images/FF.png"
                 m.albumfade.visible = true
                 if (m.video.state = "playing")
@@ -201,7 +351,7 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
                 m.videoprogress.width = MapRange(m.seek, 0, m.video.duration, 0, 475)
                 m.video.seek = m.seek
             endif
-            if key = "rewind" and m.live = false
+            if key = "rewind" and m.noSeeking = false
                 m.albumstate.uri = "pkg:/images/RW.png"
                 m.albumfade.visible = true
                 if (m.video.state = "playing")
@@ -217,6 +367,11 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
                 m.videoprogress.width = MapRange(m.seek, 0, m.video.duration, 0, 475)
                 m.video.seek = m.seek
             endif
+            if key = "OK"
+                m.top.dialog = m.settingsDialog
+            end if
+        elseif (m.landingpage.visible = true and key = "OK")
+            m.top.dialog = m.aboutDialog
         else
             if key = "back"
                 if (m.video.state = "playing")

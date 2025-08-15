@@ -11,16 +11,129 @@
 
         <children>
 
-            <Poster
-                id="SourceLogo"
-                uri="pkg:/images/logo.png"
-                width="426"
-                height="60"
-                translation="[425, 25]" />
+            <Group
+            id = "LandingPage" >
+
+                <Poster
+                    id="ArtBg"
+                    uri="pkg:/images/art_background.png"
+                    width="1280"
+                    height="720"
+                    translation="[0, 0]" />
+
+                <Rectangle 
+                id = "QRRectangle" 
+                translation = "[ 860, 225 ]"
+                width = "270" 
+                height = "270" 
+                color = "0x101010FF" >
+
+                    <Poster
+                    id="QRCode"
+                    uri="pkg:/images/setup_qr.png"
+                    width="250"
+                    height="250"
+                    translation="[10, 10]" />
+
+                </Rectangle>
+
+                <Label
+                    id = "QRLearn" 
+                    translation = "[ 860, 195 ]" 
+                    width = "270" 
+                    height = "36"
+                    horizalign = "center" 
+                    vertalign = "top" 
+                    wrap = "true"
+                    text= "Scan to learn more">
+                    <Font role = "font" uri = "pkg:/fonts/MPLUSRounded1c/MPLUSRounded1c-Medium.ttf" size = "20" />
+                </Label>
+
+                <Label 
+                    id = "QRLink" 
+                    translation = "[ 860, 500 ]" 
+                    width = "270" 
+                    height = "36"
+                    horizalign = "center" 
+                    vertalign = "top" 
+                    wrap = "true"
+                    text= "Or go to medievalapple.net/ma-setup">
+                    <Font role = "font" uri = "pkg:/fonts/MPLUSRounded1c/MPLUSRounded1c-Medium.ttf" size = "15" />
+                </Label>
+
+                <Label 
+                    id = "LandingTitle" 
+                    translation = "[ 150, 225 ]" 
+                    width = "500" 
+                    height = "50"
+                    horizalign = "left" 
+                    vertalign = "top" 
+                    wrap = "true"
+                    text= "Welcome to Media Assistant!">
+                    <Font role = "font" uri = "pkg:/fonts/MPLUSRounded1c/MPLUSRounded1c-Bold.ttf" size = "30" />
+                </Label>
+
+                <Rectangle 
+                    id = "TitleBar"
+                    translation = "[ 150, 280 ]" 
+                    width = "425" 
+                    height = "3"
+                    color = "0xFFFFFFFF" />
+
+                <Label 
+                    id = "LandingDisc" 
+                    translation = "[ 150, 295 ]"
+                    width = "400" 
+                    height = "300"
+                    horizalign = "left" 
+                    vertalign = "top" 
+                    wrap = "true"
+                    text= "To learn how to setup supported apps or how to use the developer API, please scan the code.">
+                    <Font role = "font" uri = "pkg:/fonts/MPLUSRounded1c/MPLUSRounded1c-Medium.ttf" size = "25" />
+                </Label>
+
+                <Poster
+                    id="Ok"
+                    uri="pkg:/images/ok.png"
+                    width="40"
+                    height="40"
+                    translation = "[ 1115, 643 ]"  />
+                
+                <Label 
+                    id = "About" 
+                    translation = "[ 1160, 643 ]" 
+                    width = "105" 
+                    height = "40"
+                    horizalign = "left" 
+                    vertalign = "center" 
+                    wrap = "true"
+                    text= "| About">
+                    <Font role = "font" uri = "pkg:/fonts/MPLUSRounded1c/MPLUSRounded1c-Medium.ttf" size = "20" />
+                </Label>
+
+            </Group>
 
             <Group
             id = "AudioUI"
             visible = "false" >
+
+                <Poster
+                id="Bg"
+                uri="pkg:/images/record_full.png"
+                width="1280"
+                height="1280"
+                translation="[0, -280]"
+                visible = "false" >
+
+                    <Rectangle 
+                    id = "BgFade"
+                    translation = "[ 0, 0 ]" 
+                    width = "1280" 
+                    height = "1280" 
+                    opacity = "0.75"
+                    color = "0x101010FF" />
+
+                </Poster>
 
                 <Rectangle 
                 id = "AlbumRectangle" 
@@ -57,48 +170,64 @@
                 </Rectangle>
 
                 <ScrollingLabel 
-                    id = "SongName" 
+                    id = "AlbumName" 
                     translation = "[ 700, 125 ]" 
                     width = "480" 
-                    height = "36" 
-                    font = "font:LargeBoldSystemFont" 
+                    height = "36"
                     horizalign = "left" 
                     vertalign = "center" 
                     wrap = "true"
-                    text = "Reach For The Summit" />
+                    text = "Unknown Album">
+                    <Font role = "font" uri = "pkg:/fonts/MPLUSRounded1c/MPLUSRounded1c-Medium.ttf" size = "25" />
+                </ScrollingLabel>
+
+                <ScrollingLabel 
+                    id = "SongName" 
+                    translation = "[ 700, 175 ]" 
+                    width = "480" 
+                    height = "36"
+                    horizalign = "left" 
+                    vertalign = "center" 
+                    wrap = "true"
+                    text = "Unknown Song">
+                    <Font role = "font" uri = "pkg:/fonts/MPLUSRounded1c/MPLUSRounded1c-Bold.ttf" size = "29" />
+                </ScrollingLabel>
 
                 <ScrollingLabel 
                     id = "ArtistName" 
-                    translation = "[ 700, 175 ]" 
+                    translation = "[ 700, 225 ]" 
                     width = "480" 
-                    height = "36" 
-                    font = "font:LargeBoldSystemFont" 
+                    height = "36"
                     horizalign = "left" 
                     vertalign = "center" 
                     wrap = "true"
-                    text= "Lena Raine" />
+                    text= "Unknown Artist">
+                    <Font role = "font" uri = "pkg:/fonts/MPLUSRounded1c/MPLUSRounded1c-Medium.ttf" size = "27" />
+                </ScrollingLabel>
 
                 <Label 
                     id = "CurTime" 
                     translation = "[ 672, 520 ]" 
-                    width = "480" 
-                    height = "36" 
-                    font = "font:SmallSystemFont" 
+                    width = "100" 
+                    height = "36"
                     horizalign = "left" 
                     vertalign = "center" 
                     wrap = "true"
-                    text= " 0:00" />
+                    text= " 0:00">
+                    <Font role = "font" uri = "pkg:/fonts/MPLUSRounded1c/MPLUSRounded1c-Medium.ttf" size = "20" />
+                </Label>
 
                 <Label 
                     id = "TotalTime" 
                     translation = "[ 1085, 520 ]" 
-                    width = "480" 
-                    height = "36" 
-                    font = "font:SmallSystemFont" 
+                    width = "100" 
+                    height = "36"
                     horizalign = "left" 
                     vertalign = "center" 
                     wrap = "true"
-                    text= " 0:00" />
+                    text= " 0:00" >
+                    <Font role = "font" uri = "pkg:/fonts/MPLUSRounded1c/MPLUSRounded1c-Medium.ttf" size = "20" />
+                </Label>
 
                 <Rectangle 
                 id = "ProgressBarBg" 
@@ -117,6 +246,17 @@
                 </Rectangle>
             </Group>
 
+            <Poster
+                id="SourceLogo"
+                uri="pkg:/images/logo.png"
+                width="426"
+                height="60"
+                translation="[425, 25]" />
+
+            <Video 
+            id = "videoPlayer" 
+            visible = "false" />
+
             <Rectangle 
                 id = "infoRectangle" 
                 translation = "[ 175, 625 ]" 
@@ -129,17 +269,14 @@
                 id = "infoLabel" 
                 translation = "[ 20, 20 ]" 
                 maxWidth = "865" 
-                height = "36" 
-                font = "font:LargeBoldSystemFont" 
+                height = "36"
                 horizalign = "center" 
                 vertAlign = "center"
-                text = "Launch media using a Deeplink. Learn more at medievalapple.net/Media-Assistant" />
+                text = "Launch media using a Deeplink request, or with a supported app.">
+                <Font role = "font" uri = "pkg:/fonts/MPLUSRounded1c/MPLUSRounded1c-Bold.ttf" size = "29" />
+            </ScrollingLabel>
 
             </Rectangle>
-
-            <Video 
-            id = "videoPlayer" 
-            visible = "false" />
 
         </children>
 

@@ -2,18 +2,21 @@
 const example = document.querySelector(".ex")
 
 example.addEventListener("change", (event) => {
-    if(event.target.value == "v"){
+    ClearFields()
+    if (event.target.value == "v") {
         ExVideo()
     }
-    else if(event.target.value == "a"){
+    else if (event.target.value == "a") {
         ExAudio()
     }
-    else if(event.target.value == "la"){
+    else if (event.target.value == "la") {
         ExLiveAudio()
     }
-    else if(event.target.value == "lv"){
+    else if (event.target.value == "lv") {
         ExLiveVideo()
     }
+    RefreshFields()
+    RefreshCURL()
 })
 
 function ExVideo() {

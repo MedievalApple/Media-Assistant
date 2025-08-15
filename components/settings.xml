@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="settings" extends="StandardDialog" initialFocus="buttonArea" >
+
+    <children>
+        <StdDlgTitleArea primaryTitle="Settings" />
+        <StdDlgContentArea>
+            <StdDlgTextItem text="These settings only affect the music player" />
+            <StdDlgActionCardItem id="checkBox" iconType = "checkbox">
+                <SimpleLabel id="checkboxLabel" text="Album Art Background" />
+            </StdDlgActionCardItem>
+            <StdDlgActionCardItem id="checkBox1" iconType = "checkbox">
+                <SimpleLabel id="checkboxLabel1" text="Show Album Name If Available" />
+            </StdDlgActionCardItem>
+            <StdDlgActionCardItem id="checkBox2" iconType = "checkbox">
+                <SimpleLabel id="checkboxLabel2" text="Enable Screen Saver During Playback" />
+            </StdDlgActionCardItem>
+            <StdDlgTextItem text="Note: Settings will take effect next song" />
+        </StdDlgContentArea>
+        <StdDlgButtonArea id="buttonArea">
+            <StdDlgButton text="Close" />
+        </StdDlgButtonArea>
+    </children>
+
+    <script type="text/brightscript" uri="pkg:/components/settings.brs" />
+
+</component>
